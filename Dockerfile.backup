@@ -1,0 +1,18 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install mongodb tools
+RUN apk add --no-cache mongodb-tools
+
+# Copy backup scripts
+COPY scripts/backup.js ./scripts/
+COPY scripts/scheduled-backup.js ./scripts/
+COPY package.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Run scheduled backup
+CMD ["node", "scripts/scheduled-backup.js"]
+

@@ -1,0 +1,16 @@
+[build]
+  # تأكد أن Netlify يعمل من جذر المستودع (وليس مجلد فرعي)
+  base = "."
+  command = "npm run build"
+  publish = ".next"
+  environment = { NODE_VERSION = "18" }
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Optional: enable stricter caching control if needed
+#[[headers]]
+#  for = "/*"
+#  [headers.values]
+#    Cache-Control = "public, max-age=0, must-revalidate"
+
